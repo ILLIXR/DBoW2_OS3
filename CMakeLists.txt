@@ -22,7 +22,7 @@ set(HDRS
   include/DBoW2_OS3/QueryResults.h        include/DBoW2_OS3/TemplatedDatabase.h   include/DBoW2_OS3/FORB.h
   include/DBoW2_OS3/DBoW2.h               include/DBoW2_OS3/FClass.h              include/DBoW2_OS3/FeatureVector.h
   include/DBoW2_OS3/ScoringObject.h       include/DBoW2_OS3/TemplatedVocabulary.h)
-set(SRCS 
+set(SRCS
   src/BowVector.cpp     src/FBrief.cpp        src/FORB.cpp
   src/FeatureVector.cpp src/QueryResults.cpp  src/ScoringObject.cpp)
 
@@ -53,13 +53,14 @@ endif(BUILD_Demo)
 configure_file(src/DBoW2_OS3.cmake.in
   "${PROJECT_BINARY_DIR}/DBoW2_OS3Config.cmake" @ONLY)
 
+set(DBoW2_OS3_DIR ${CMAKE_CURRENT_BINARY_DIR} CACHE PATH "" FORCE)
+
 install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 if(BUILD_DBoW2_OS3)
   install(DIRECTORY include/DBoW2_OS3 DESTINATION ${CMAKE_INSTALL_PREFIX}/include)
 endif()
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/DBoW2_OS3Config.cmake"
   DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${PROJECT_NAME})
-install(FILES "${PROJECT_BINARY_DIR}/DBoW2_OS3Config.cmake" 
+install(FILES "${PROJECT_BINARY_DIR}/DBoW2_OS3Config.cmake"
   DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/cmake/DBoW2_OS3/)
 install(DIRECTORY ${DEPENDENCY_INSTALL_DIR}/ DESTINATION ${CMAKE_INSTALL_PREFIX} OPTIONAL)
-
